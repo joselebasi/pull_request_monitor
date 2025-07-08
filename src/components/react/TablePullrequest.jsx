@@ -19,9 +19,15 @@ const TablePullrequest = () => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [isClient, setIsClient] = useState(false);
   const limit = 20;
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
     const localData = localStorage.getItem('pullsData');
     if (localData) {
       setPulls(JSON.parse(localData));
@@ -30,7 +36,7 @@ const TablePullrequest = () => {
       fetchData();
     }
     // eslint-disable-next-line
-  }, []);
+  }, [isClient]);
 
   const fetchData = () => {
     setLoading(true);
