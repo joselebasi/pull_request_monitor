@@ -3,16 +3,15 @@
 import { Image } from 'astro:assets';
 ---
 <header class="bg-white shadow flex items-center justify-between p-4">
-    <div class="flex items-center gap-4">
-        <Image src="/logo_BO.png" alt="logo backoffices" width="80" height="80" />
+    <a href="/" class="flex items-center gap-4 cursor-pointer" style="text-decoration: none;">
+        <Image src="/logo_BO.png" alt="logo backoffices" width="120" height="120" />
         <h1 class="text-xl font-bold">Ingenieria Backoffice</h1>
-    </div>
+    </a>
     
     <nav>
         <ul class="flex gap-8 list-none py-4 m-0 justify-center">
-            <li><a href="/about" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">About</a></li>
-            <li><a href="/contact" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Contact</a></li>
-            <li><a href="/projects" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Projects</a></li>
+            <li><a href="/estructura" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Estructura</a></li>
+            <li><a href="/vision" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Vision</a></li>
         </ul>
     </nav>
 </header>

@@ -22,12 +22,24 @@ const TablePullrequest = () => {
   const limit = 20;
 
   useEffect(() => {
+    const localData = localStorage.getItem('pullsData');
+    if (localData) {
+      setPulls(JSON.parse(localData));
+      setLoading(false);
+    } else {
+      fetchData();
+    }
+    // eslint-disable-next-line
+  }, []);
+
+  const fetchData = () => {
     setLoading(true);
     fetch(`/api/openedpullrequest`).then(res => res.json()).then(data => {
       setPulls(data);
+      localStorage.setItem('pullsData', JSON.stringify(data));
       setLoading(false);
     });
-  }, []);
+  };
 
   const handleSort = (key) => {
     if (sortBy === key) {
@@ -70,7 +82,17 @@ const TablePullrequest = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">Pull Requests Abiertos</h2>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-md font-bold">Pull Requests Abiertos</h2>
+        <button
+          className="px-3 py-1 rounded bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50"
+          onClick={() => {
+            localStorage.removeItem('pullsData');
+            fetchData();
+          }}
+          disabled={loading}
+        >Actualizar</button>
+      </div>
       <input
         className="border px-2 py-1 mb-4 rounded w-full max-w-xs"
         type="text"
